@@ -19,5 +19,5 @@ typedef struct _MatrixFile {
 	PMatrixValue values;
 } MatrixFile, *PMatrixFile;
 
-
+VOID GetMatrixValue(void *mFile, DWORD line, DWORD column, DWORD *value);
 
