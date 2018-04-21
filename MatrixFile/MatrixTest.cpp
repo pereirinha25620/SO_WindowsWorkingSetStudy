@@ -1,16 +1,13 @@
 #include "MatrixFile.h"
 
 MatrixFile createTestMatrix(DWORD lines, DWORD columns) {
-	MatrixHeader mh = { lines, columns };
 	DWORD mDim = lines * columns;
 
-	PMatrixValue values = (PMatrixValue)malloc(sizeof(MatrixValue) * mDim);
+	DWORD *values = (DWORD *)malloc(sizeof(DWORD) * mDim);
 
-	INT32 *m = (INT32 *)values;
-
-	for (INT32 i = 0; i < mDim; i++) *(m + i) = i;
+	for (DWORD i = 0; i < mDim; i++) *(values + i) = i;
 	
-	MatrixFile matrix = { mh, values };
+	MatrixFile matrix = { lines, columns, values };
 
 	return matrix;
 }

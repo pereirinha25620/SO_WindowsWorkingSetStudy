@@ -2,22 +2,18 @@
 
 #pragma once
 
+#define MATRIX_OFF	4
+#define COORD_IS_OUT_OF_BOUNDS(l, c)	(l < 0 || l > (pMatrixFile->lines - 1) || c < 0 || c > (pMatrixFile->columns - 1))
+
 typedef struct _MatrixHeader {
-	USHORT lines;
-	USHORT columns;
+	
 } MatrixHeader, *PMatrixHeader;
 
-typedef struct _MAtrixValue {
-	BYTE b0;
-	BYTE b1;
-	BYTE b2;
-	BYTE b3;
-} MatrixValue, *PMatrixValue;
-
 typedef struct _MatrixFile {
-	MatrixHeader header;
-	PMatrixValue values;
+	USHORT lines;
+	USHORT columns;
+	DWORD *values;
 } MatrixFile, *PMatrixFile;
 
-VOID GetMatrixValue(void *mFile, DWORD line, DWORD column, DWORD *value);
+BOOL GetMatrixValue(void *mFile, DWORD line, DWORD column, DWORD *value);
 
